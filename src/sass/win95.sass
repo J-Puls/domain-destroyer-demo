@@ -1,0 +1,94 @@
+.win-95
+    background-color: #c0c0c0
+    &.container
+        border-left: 2px solid white
+        border-top: 2px solid white
+        box-shadow: 2px 2px 1px 0 #000000aa
+        display: none
+        &.visible
+            display: flex
+    &.window
+        flex-direction: column
+        height: 400px
+        left: 50%
+        padding: .25em
+        position: absolute
+        top: 50%
+        transform: translate3d(-50%, -50%, 0)
+        z-index: 10000
+        &.visible
+            display: flex
+        .window-title-bar
+            background-color: navy
+            display: flex
+            height: 2em
+            justify-content: space-between
+            padding: .25em 0.5em
+            .text
+                align-self: center
+                color: #ffffff
+            .close-btn
+                align-self: center
+                display: flex
+                height: 2em
+                justify-content: center
+                width: 2em
+                .close-icon
+                    align-self: center
+                    font-size: 1em
+                    line-height: 1em
+                    text-align: center
+        .window-heading
+            display: flex
+            font-size: 2em
+            font-weight: 500
+            height: 10%
+            margin: .5em 1em
+
+        .window-contents
+            background-color: white
+            border-left: 2px inset #000000aa
+            border-top: 2px inset #000000aa
+            margin: 1em
+            overflow: auto
+            padding: 1em 2em
+            table
+                width: 100%
+
+                tbody > tr > td
+                    padding: 0.5em 1em
+                tbody > tr:nth-of-type(even)
+                    background-color: lightgray
+        .window-footer
+            display: flex
+            justify-content: center
+    &.btn
+        align-content: center
+        align-self: center
+        background-color: #c0c0c0
+        box-shadow: 1px 1px 1px 0 #000000aa
+        display: flex
+        &:focus
+            outline: none
+            .btn-contents
+                outline: 1px dotted black
+        div
+            display: flex
+            align-content: center
+            align-self: center
+
+@media screen and ( max-width: 4000px  )
+    .window
+        max-width: 30%
+@media screen and ( max-width: 1920px  )
+    .window
+        max-width: 40%
+@media screen and ( max-width: 1366px  )
+    .window
+        max-width: 50%
+@media screen and ( max-width: 1024px  )
+    .window
+        max-width: 60%
+@media screen and ( max-width: 768px  )
+    .window
+        max-width: 90%

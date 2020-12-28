@@ -1,0 +1,22 @@
+.weapon-select
+    display: flex
+    height: 100%
+    justify-content: space-evenly
+    .weapon-icon
+        background-color: #c0c0c0
+        background-position: center
+        background-repeat: no-repeat
+        background-size: 90%
+        border-radius: .5em
+        cursor: pointer
+        height: 150px
+        margin: .5em
+        width: 150px
+        &:focus
+            outline: 1px dotted black
+        &.hammer
+            background-image: url("../assets/icons/hammer-f1.png")
+        &.machinegun
+            background-image: url("../assets/icons/mg-f1.png")
+        &.stamp
+            background-image: url("../assets/icons/stamp-f1.png")

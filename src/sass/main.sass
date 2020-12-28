@@ -1,0 +1,35 @@
+@import "./damagelayer"
+@import "./splashscreen"
+@import "./startmenu"
+@import "./taskbar"
+@import "./weaponselect"
+@import "./win95"
+
+body
+    height: 100vh
+    margin: 0
+    width: 100%
+
+#root
+    font-family: 'Microsoft Sans Serif Regular', Arial, Helvetica, sans-serif
+    height: 100%
+
+.destroyer-parent
+    background-color: #008083 !important
+    background-image: url("../assets/backgrounds/logo-icons.svg")
+    background-position-y: 5%
+    background-repeat: no-repeat
+    background-size: contain
+    box-sizing: border-box
+    height: 100%
+    overflow: hidden
+    width: 100%
+
+a
+    color: blue
+    font-weight: bold
+    text-decoration: none
+    &:hover
+        color: navy
+.welcome-info > h2, h3
+    text-align: center
