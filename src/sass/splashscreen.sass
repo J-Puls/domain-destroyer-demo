@@ -9,10 +9,10 @@
     background-size: cover
     background-repeat: no-repeat
     image-rendering: pixelated
-    transition-duration: 3s
-    filter: opacity(1) brightness(1)
+    transition-duration: 2s
+    filter: opacity(1) brightness(1) grayscale(0)
     &.closed
-        filter: opacity(0) brightness(0)
+        filter: opacity(0) brightness(0) grayscale(1)
         visibility: hidden
         backdrop-filter: blur(0px)
     .start-game-btn
@@ -20,3 +20,7 @@
         color: white
         font-size: 1.1em
         margin-bottom: 1em
+.welcome-window
+    min-height: 50vh !important
+    height: auto !important
+    max-height: 100vw !important

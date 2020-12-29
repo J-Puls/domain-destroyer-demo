@@ -1,0 +1,80 @@
+.taskbar {
+  background-color: #c0c0c0;
+  border-top: 3px solid #ffffffcc;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.taskbar .start-btn {
+  cursor: pointer;
+  font-size: 1.2em;
+  height: 30px;
+  margin-left: 0.5em;
+}
+
+.taskbar .start-btn:focus {
+  -webkit-box-shadow: 1px 1px 1px 0 inset #000000aa;
+          box-shadow: 1px 1px 1px 0 inset #000000aa;
+  outline: none;
+}
+
+.taskbar .start-btn .start-btn-logo {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 0 5px;
+}
+
+.taskbar .start-btn .start-btn-text {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.taskbar .clock {
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #b0b0b0;
+  -webkit-box-shadow: 1px 1px 3px 0px inset #000000aa;
+          box-shadow: 1px 1px 3px 0px inset #000000aa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-right: 1em;
+  padding: 0 10px;
+  width: 5em;
+}
+
+.taskbar .clock a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.taskbar .clock a img {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.taskbar .clock .time {
+  height: 1em;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+/*# sourceMappingURL=taskbar.css.map */

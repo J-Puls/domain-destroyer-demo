@@ -1,0 +1,549 @@
+.damage-layer {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.splash-screen {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background-color: #00000033;
+  z-index: 10002;
+  -webkit-backdrop-filter: blur(25px);
+          backdrop-filter: blur(25px);
+  background-image: url("../assets/backgrounds/clouds.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
+      image-rendering: pixelated;
+  -webkit-transition-duration: 2s;
+          transition-duration: 2s;
+  -webkit-filter: opacity(1) brightness(1) grayscale(0);
+          filter: opacity(1) brightness(1) grayscale(0);
+}
+
+.splash-screen.closed {
+  -webkit-filter: opacity(0) brightness(0) grayscale(1);
+          filter: opacity(0) brightness(0) grayscale(1);
+  visibility: hidden;
+  -webkit-backdrop-filter: blur(0px);
+          backdrop-filter: blur(0px);
+}
+
+.splash-screen .start-game-btn {
+  background-color: #008d00 !important;
+  color: white;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+}
+
+.welcome-window {
+  min-height: 50vh !important;
+  height: auto !important;
+  max-height: 100vw !important;
+}
+
+.start-menu-container {
+  bottom: 0;
+  display: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 200px;
+  left: 0;
+  position: fixed;
+  -webkit-transform: translate3d(10px, -43px, 0);
+          transform: translate3d(10px, -43px, 0);
+  width: 200px;
+  z-index: 9999;
+}
+
+.start-menu-container.visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.start-menu-container .start-menu {
+  border-left: 2px solid white;
+  border-top: 2px solid white;
+  -webkit-box-shadow: 2px 2px 1px 0 #000000aa;
+          box-shadow: 2px 2px 1px 0 #000000aa;
+  cursor: default;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.start-menu-container .start-menu .start-menu-brand {
+  background-image: url("../assets/icons/start-menu-brand.svg");
+  height: 100%;
+  width: 30px;
+}
+
+.start-menu-container .start-menu .menu-contents {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 170px;
+}
+
+.start-menu-container .start-menu .menu-contents a {
+  text-decoration: none !important;
+}
+
+.start-menu-container .menu-item {
+  background-color: #c0c0c0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 25%;
+  width: 100%;
+}
+
+.start-menu-container .menu-item:hover {
+  background-color: navy;
+  color: white;
+}
+
+.start-menu-container .menu-item-contents {
+  -ms-flex-item-align: center;
+      align-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 1em;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding-left: 0.5em;
+  padding-right: 1em;
+  text-align: center;
+  width: 100%;
+}
+
+.start-menu-container .menu-item-contents .menu-icon {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  height: 20px;
+  padding: 0.25em;
+  width: auto;
+}
+
+.start-menu-container .menu-item-contents .menu-icon div > span {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.start-menu-container .weapon-select {
+  cursor: default;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100px;
+  left: 198px;
+  position: absolute;
+  width: 200px;
+  z-index: 10000;
+}
+
+.start-menu-container .weapon-select .menu-item > .menu-item-contents {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.start-menu-container .volume-select {
+  height: 50px;
+  left: 198px;
+  padding: 0 0.5em;
+  position: absolute;
+  top: 50px;
+  width: 200px;
+  z-index: 10000;
+}
+
+.start-menu-container .volume-select .menu-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.start-menu-container .volume-select .menu-item:hover {
+  background-color: transparent;
+  color: initial;
+}
+
+.start-menu-container .volume-select .menu-item .menu-item-contents {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.taskbar {
+  background-color: #c0c0c0;
+  border-top: 3px solid #ffffffcc;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.taskbar .start-btn {
+  cursor: pointer;
+  font-size: 1.2em;
+  height: 30px;
+  margin-left: 0.5em;
+}
+
+.taskbar .start-btn:focus {
+  -webkit-box-shadow: 1px 1px 1px 0 inset #000000aa;
+          box-shadow: 1px 1px 1px 0 inset #000000aa;
+  outline: none;
+}
+
+.taskbar .start-btn .start-btn-logo {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 0 5px;
+}
+
+.taskbar .start-btn .start-btn-text {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.taskbar .clock {
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #b0b0b0;
+  -webkit-box-shadow: 1px 1px 3px 0px inset #000000aa;
+          box-shadow: 1px 1px 3px 0px inset #000000aa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-right: 1em;
+  padding: 0 10px;
+  width: 5em;
+}
+
+.taskbar .clock a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.taskbar .clock a img {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.taskbar .clock .time {
+  height: 1em;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.weapon-select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.weapon-select .weapon-icon {
+  background-color: #c0c0c0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  border-radius: .5em;
+  cursor: pointer;
+  height: 150px;
+  margin: .5em;
+  width: 150px;
+}
+
+.weapon-select .weapon-icon:focus {
+  outline: 1px dotted black;
+}
+
+.weapon-select .weapon-icon.hammer {
+  background-image: url("../assets/icons/hammer-f1.png");
+}
+
+.weapon-select .weapon-icon.machinegun {
+  background-image: url("../assets/icons/mg-f1.png");
+}
+
+.weapon-select .weapon-icon.stamp {
+  background-image: url("../assets/icons/stamp-f1.png");
+}
+
+.win-95 {
+  background-color: #c0c0c0;
+}
+
+.win-95.container {
+  border-left: 2px solid white;
+  border-top: 2px solid white;
+  -webkit-box-shadow: 2px 2px 1px 0 #000000aa;
+          box-shadow: 2px 2px 1px 0 #000000aa;
+  display: none;
+}
+
+.win-95.container.visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.win-95.window {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 400px;
+  left: 50%;
+  padding: .25em;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  z-index: 10000;
+}
+
+.win-95.window.visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.win-95.window .window-title-bar {
+  background-color: navy;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: .25em 0.5em;
+}
+
+.win-95.window .window-title-bar .text {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #ffffff;
+}
+
+.win-95.window .window-title-bar .close-btn {
+  -ms-flex-item-align: center;
+      align-self: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 2em;
+}
+
+.win-95.window .window-title-bar .close-btn .close-icon {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 1em;
+  line-height: 1em;
+  text-align: center;
+}
+
+.win-95.window .window-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 2em;
+  font-weight: 500;
+  height: 10%;
+  margin: .5em 1em;
+}
+
+.win-95.window .window-contents {
+  background-color: white;
+  border-left: 2px inset #000000aa;
+  border-top: 2px inset #000000aa;
+  margin: 1em;
+  overflow: auto;
+  padding: 1em 2em;
+}
+
+.win-95.window .window-contents table {
+  width: 100%;
+}
+
+.win-95.window .window-contents table tbody > tr > td {
+  padding: 0.5em 1em;
+}
+
+.win-95.window .window-contents table tbody > tr:nth-of-type(even) {
+  background-color: lightgray;
+}
+
+.win-95.window .window-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.win-95.btn {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #c0c0c0;
+  -webkit-box-shadow: 1px 1px 1px 0 #000000aa;
+          box-shadow: 1px 1px 1px 0 #000000aa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.win-95.btn:focus {
+  outline: none;
+}
+
+.win-95.btn:focus .btn-contents {
+  outline: 1px dotted black;
+}
+
+.win-95.btn div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+@media screen and (max-width: 4000px) {
+  .window {
+    max-width: 30%;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  .window {
+    max-width: 40%;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .window {
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .window {
+    max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .window {
+    max-width: 100%;
+  }
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  width: 100%;
+}
+
+#root {
+  font-family: 'Microsoft Sans Serif Regular', Arial, Helvetica, sans-serif;
+  height: 100%;
+  background-color: black;
+}
+
+.destroyer-parent {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  background-color: #008083 !important;
+  background-image: url("../assets/backgrounds/logo-icons.svg");
+  background-position-y: 5%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-sizing: border-box;
+}
+
+a {
+  color: blue;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  color: navy;
+}
+
+.welcome-info > h1, h2, h3 {
+  text-align: center;
+}
+/*# sourceMappingURL=main.css.map */

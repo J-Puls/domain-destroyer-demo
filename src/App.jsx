@@ -1,134 +1,158 @@
-import React, { useEffect, useState } from "react";
-import Destroyer from "domain-destroyer";
-import "domain-destroyer/dist/css/destroyer.min.css";
-import Taskbar from "./components/Taskbar";
-import StartMenu from "./components/StartMenu";
-import Win95Window from "./components/Win95Window";
 import ControlsTable from "./components/ControlsTable";
-import WeaponSelect from "./components/WeaponSelect";
+import Destroyer from "domain-destroyer";
+import React, { useEffect, useState } from "react";
 import SplashScreen from "./components/SplashScreen";
+import StartMenu from "./components/StartMenu";
+import Taskbar from "./components/Taskbar";
+import WeaponSelect from "./components/WeaponSelect";
+import Win95Window from "./components/Win95Window";
+import win95Start from "./assets/sounds/Windows-95-startup-sound.webm";
 import { GameStateProvider } from "./context/GameState";
 import { Howl } from "domain-destroyer/node_modules/howler";
-import win95Start from "./assets/sounds/Windows-95-startup-sound.webm";
-import "./sass/main.sass";
+
+import "domain-destroyer/dist/css/destroyer.min.css";
+import "./sass/main.css";
 
 export const App = () => {
-  const [destroyer, setDestroyer] = useState(null);
-  const [controlsVisible, setControlsVisible] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [volumeVisible, setVolumeVisible] = useState(false);
-  const [weaponsVisible, setWeaponsVisible] = useState(false);
-  const [welcomeVisible, setWelcomeVisible] = useState(true);
-  const [gameStarted, setGameStarted] = useState(false);
-  let container, volumeSlider;
+    const [controlsVisible, setControlsVisible] = useState(false);
+    const [destroyer, setDestroyer] = useState(null);
+    const [gameStarted, setGameStarted] = useState(false);
+    const [menuVisible, setMenuVisible] = useState(false);
+    const [volumeVisible, setVolumeVisible] = useState(false);
+    const [weaponsVisible, setWeaponsVisible] = useState(false);
+    let container;
 
-  useEffect(() => {
-    container && setDestroyer(new Destroyer(container, { zIndexStart: 10 }));
-  }, [container, volumeSlider]);
+    useEffect(() => {
+        // enable firing via left or right mouse button
+        document.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        });
+    }, []);
 
-  useEffect(() => {
-    window.destroyer = destroyer;
-  }, [destroyer]);
+    useEffect(() => {
+        // once the destroyer parent target is rendered, instantiate the game
+        if (container) {
+            setDestroyer(
+                new Destroyer(container, {
+                    zIndexStart: 10,
+                    defaultVolume: 0.5
+                })
+            );
+        }
+    }, [container]);
 
-  // useEffect(() => {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  // }, []);
+    useEffect(() => {
+        // once game instance is created, inject it and make it globally accessible
+        if (destroyer) {
+            destroyer.inject();
+            window.destroyer = destroyer;
+        }
+    }, [destroyer]);
 
-  const hideMenu = () => setMenuVisible(false);
-  const toggleMenu = () => setMenuVisible(!menuVisible);
-  const closeControlsWindow = () => setControlsVisible(false);
-  const closeWeaponsWindow = () => setWeaponsVisible(false);
-  const closeWelcomeWindow = () => setWelcomeVisible(false);
-  const closeVolumeMenu = () => setVolumeVisible(false);
-  const handleVolumeMenuClick = () => setVolumeVisible(!volumeVisible);
-  const setWeapon = (id) => destroyer && destroyer.setWeapon(id);
-  const handleClearClick = () => destroyer && destroyer.clear();
+    // shortcut functions
+    const closeControlsWindow = () => setControlsVisible(false);
+    const closeVolumeMenu = () => setVolumeVisible(false);
+    const closeWeaponsWindow = () => setWeaponsVisible(false);
+    const handleClearClick = () => destroyer && destroyer.clear();
+    const handleVolumeMenuClick = () => setVolumeVisible(!volumeVisible);
+    const hideMenu = () => setMenuVisible(false);
+    const setWeapon = (id) => destroyer && destroyer.setWeapon(id);
+    const toggleMenu = () => setMenuVisible(!menuVisible);
 
-  const handleStartClick = () => {
-    if (!menuVisible) {
-      destroyer && destroyer.parent.addEventListener("click", hideMenu);
-    } else destroyer && destroyer.parent.removeEventListener("click", hideMenu);
-    setVolumeVisible(false);
-    toggleMenu();
-  };
+    const handleStartClick = () => {
+        // create a listener that closes the start menu if you click away from it when open
+        if (!menuVisible) {
+            destroyer && destroyer.parent.addEventListener("click", hideMenu);
+        }
+        // remove the listener if the menu is closed
+        else
+            destroyer &&
+                destroyer.parent.removeEventListener("click", hideMenu);
+        setVolumeVisible(false); // make sure volume slider is closed with the menu
+        toggleMenu(); // open or close the menu when the button is clicked
+    };
 
-  const closeWindows = () => {
-    closeVolumeMenu();
-    hideMenu();
-    closeControlsWindow();
-    closeWelcomeWindow();
-    closeWeaponsWindow();
-  };
+    // shortcut to close all windows at once
+    const closeWindows = () => {
+        closeVolumeMenu();
+        hideMenu();
+        closeControlsWindow();
+        closeWeaponsWindow();
+    };
 
-  const handleWeaponMenuClick = () => {
-    closeWindows();
-    setWeaponsVisible(true);
-  };
-  const handleControlsMenuClick = () => {
-    closeWindows();
-    setControlsVisible(true);
-  };
+    const handleWeaponMenuClick = () => {
+        closeWindows();
+        setWeaponsVisible(true);
+    };
+    const handleControlsMenuClick = () => {
+        closeWindows();
+        setControlsVisible(true);
+    };
 
-  const handleVolumeChange = (slider) => {
-    slider && destroyer && destroyer.setVolume(slider.value);
-  };
+    const handleVolumeChange = (slider) => {
+        slider && destroyer && destroyer.setVolume(slider.value);
+    };
 
-  const handleStartGame = () => {
-    setGameStarted(true);
-    const sound = new Howl({ src: win95Start, volume: 0.7 });
-    sound.play();
-  };
+    // trigger game instantiation and play the Windows95 startup chime
+    const handleStartGame = () => {
+        setGameStarted(true);
+        const sound = new Howl({ src: win95Start, volume: 0.5 });
+        sound.play();
+    };
 
-  useEffect(() => {
-    gameStarted && destroyer.inject();
-  }, [gameStarted]);
+    const context = {
+        controlsVisible,
+        handleStartClick,
+        menuVisible,
+        setControlsVisible,
+        setMenuVisible,
+        setVolumeVisible,
+        setWeapon,
+        setWeaponsVisible,
+        volumeVisible,
+        weaponsVisible
+    };
 
-  const context = {
-    controlsVisible,
-    setControlsVisible,
-    weaponsVisible,
-    setWeaponsVisible,
-    menuVisible,
-    setMenuVisible,
-    volumeVisible,
-    setVolumeVisible,
-    setWeapon,
-    handleStartClick,
-  };
+    return (
+        <GameStateProvider value={context}>
+            <SplashScreen
+                onCloseClick={handleStartGame}
+                visible={!gameStarted}
+            />
+            <div ref={(el) => (container = el)}></div>
+            {gameStarted && (
+                <>
+                    <Taskbar onStartClick={toggleMenu} />
+                    <StartMenu
+                        clearClick={handleClearClick}
+                        controlsClick={handleControlsMenuClick}
+                        defaultVolume={destroyer ? destroyer.defaultVolume : 1}
+                        setWeapon={setWeapon}
+                        volumeChange={handleVolumeChange}
+                        volumeClick={handleVolumeMenuClick}
+                        weaponClick={handleWeaponMenuClick}
+                    />
 
-  return (
-    <GameStateProvider value={context}>
-      <div ref={(el) => (container = el)}></div>
-      <Taskbar onStartClick={toggleMenu} />
-      <StartMenu
-        weaponClick={handleWeaponMenuClick}
-        volumeClick={handleVolumeMenuClick}
-        clearClick={handleClearClick}
-        controlsClick={handleControlsMenuClick}
-        volumeChange={handleVolumeChange}
-        setWeapon={setWeapon}
-      />
-      <SplashScreen onCloseClick={handleStartGame} visible={!gameStarted} />
-      <Win95Window
-        heading="Controls"
-        onCloseClick={closeControlsWindow}
-        title="Domain Destroyer | Controls"
-        visible={controlsVisible}
-      >
-        <ControlsTable />
-      </Win95Window>
-      <Win95Window
-        heading="Weapon Select"
-        onCloseClick={closeWeaponsWindow}
-        title="Domain Destroyer | Weapon Select"
-        visible={weaponsVisible}
-      >
-        <WeaponSelect />
-      </Win95Window>
-    </GameStateProvider>
-  );
+                    <Win95Window
+                        closeBtn
+                        heading="Controls"
+                        onCloseClick={closeControlsWindow}
+                        title="Domain Destroyer | Controls"
+                        visible={controlsVisible}>
+                        <ControlsTable />
+                    </Win95Window>
+                    <Win95Window
+                        closeBtn
+                        heading="Weapon Select"
+                        onCloseClick={closeWeaponsWindow}
+                        title="Domain Destroyer | Weapon Select"
+                        visible={weaponsVisible}>
+                        <WeaponSelect />
+                    </Win95Window>
+                </>
+            )}
+        </GameStateProvider>
+    );
 };
 
 export default App;

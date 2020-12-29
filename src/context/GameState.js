@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export const GameState = createContext({
-  displayName: "GameState",
+    displayName: "GameState"
 });
 
 // Provide shorthand version of Provider and Consumer
