@@ -11,7 +11,7 @@ import { GameStateProvider } from "./context/GameState";
 import { Howl } from "howler";
 
 import "domain-destroyer/dist/css/destroyer.min.css";
-import "./sass/main.css";
+import "./sass/main.sass";
 
 export const App = () => {
     const [controlsVisible, setControlsVisible] = useState(false);
