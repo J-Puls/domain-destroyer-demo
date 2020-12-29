@@ -1,0 +1,7 @@
+spec:
+  name: domain-destroyer-demo
+  static_sites:
+    - git:
+        branch: main
+        repo_clone_url: https://github.com/J-Puls/domain-destroyer.git
+      name: domain-destroyer-demo

@@ -59,6 +59,14 @@ const WelcomeInfo = () => {
                 <br />
                 Happy Hacking!
             </h3>
+            <a
+                className="do-btn"
+                href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/J-Puls/domain-destroyer/tree/master">
+                <img
+                    src="https://mp-assets1.sfo2.digitaloceanspaces.com/deploy-to-do/do-btn-blue.svg"
+                    alt="Deploy to DO"
+                />
+            </a>
         </div>
     );
 };

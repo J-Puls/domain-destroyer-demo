@@ -8,7 +8,7 @@ import WeaponSelect from "./components/WeaponSelect";
 import Win95Window from "./components/Win95Window";
 import win95Start from "./assets/sounds/Windows-95-startup-sound.webm";
 import { GameStateProvider } from "./context/GameState";
-import { Howl } from "domain-destroyer/node_modules/howler";
+import { Howl } from "howler";
 
 import "domain-destroyer/dist/css/destroyer.min.css";
 import "./sass/main.css";
