@@ -45,8 +45,19 @@ const WelcomeInfo = () => {
                     rel="noopener noreferrer">
                     check out the GitHub repo.
                 </a>
+                You can learn to make applications similar to this for yourself
+                by reading my related{" "}
+                <a href="https://dev.to/jpuls/simple-sprite-animations-for-games-on-the-web-digitalocean-hackathon-blog-part-1-ndb">
+                    Dev posts on the subject!
+                </a>
             </p>
-
+            <p className="disclaimer">
+                <small>
+                    I take no credit for the original artwork depicted in this
+                    project, I simply modified it from its original form to suit
+                    the needs of this application.
+                </small>
+            </p>
             <h3>
                 I make all sorts of cool things for the web, <br />
                 <a
@@ -55,9 +66,6 @@ const WelcomeInfo = () => {
                     rel="noopener noreferrer">
                     visit my website to learn more!
                 </a>
-                <br />
-                <br />
-                Happy Hacking!
             </h3>
             <a
                 className="do-btn"

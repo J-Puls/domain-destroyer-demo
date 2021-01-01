@@ -13,7 +13,7 @@ const SplashScreen = (props) => {
                     <Win95Button
                         className="start-game-btn"
                         onClick={props.onCloseClick}>
-                        Start Game
+                        Commence Destruction!
                     </Win95Button>
                 }
                 onCloseClick={props.onCloseClick}

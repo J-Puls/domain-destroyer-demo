@@ -119,6 +119,7 @@ export const App = () => {
                 onCloseClick={handleStartGame}
                 visible={!gameStarted}
             />
+
             <div ref={(el) => (container = el)}></div>
             {gameStarted && (
                 <>
