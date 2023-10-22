@@ -8,14 +8,9 @@ const WelcomeInfo = () => {
                 timeless shareware classic <strong>Desktop Destroyer</strong> by
                 Miroslav Němeček. All aspects of this project were created as an
                 entry to the{" "}
-                <strong>
-                    <a
-                        href="https://dev.to/devteam/announcing-the-digitalocean-app-platform-hackathon-on-dev-2i1k"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        DigitalOcean App Platform Hackathon.
-                    </a>
-                </strong>
+                <em>
+                DigitalOcean App Platform Hackathon.
+                </em>
             </p>
 
             <p>
@@ -67,14 +62,6 @@ const WelcomeInfo = () => {
                     visit my website to learn more!
                 </a>
             </h3>
-            <a
-                className="do-btn"
-                href="https://cloud.digitalocean.com/apps/new?repo=https://github.com/J-Puls/domain-destroyer/tree/master">
-                <img
-                    src="https://mp-assets1.sfo2.digitaloceanspaces.com/deploy-to-do/do-btn-blue.svg"
-                    alt="Deploy to DO"
-                />
-            </a>
         </div>
     );
 };
